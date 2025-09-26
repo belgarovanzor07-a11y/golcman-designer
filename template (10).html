@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гольцман Кристина — Дизайнер интерьера</title>
+    <meta name="description" content="Гольцман Кристина - профессиональный дизайнер интерьера">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --accent: #1f1f1f;
+            --accent-light: #3a3a3a;
+            --accent-gold: #d4af37;
+            --bg: #fefefe;
+            --card: #fff;
+            --muted: #6b6b6b;
+            --radius: 12px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --hover-scale: 1.05;
+            --shadow: 0 8px 25px rgba(0,0,0,0.1);
+            --shadow-hover: 0 15px 40px rgba(0,0,0,0.15);
+            --text-light: #222;
+            --text-dark: #f5f5f5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding-top: 80px;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        body.dark { 
+            background: #111; 
+            color: var(--text-dark); 
+        }
+
+        a { 
+            text-decoration: none; 
+            color: inherit; 
+        }
+
+        header, main, footer { 
+            width: 100%; 
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed; 
+            top: 0; 
+            width: 100%;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            padding: 20px 0; 
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            display: flex; 
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        body.dark nav {
+            background: rgba(30,30,30,0.98);
+        }
+
+        nav.scrolled { 
+            padding: 15px 0; 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .nav-container { 
+            width: 1200px; 
+            max-width: 95%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        .logo { 
+            font-weight: bold; 
+            font-size: 1.4em; 
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-links { 
+            display: flex; 
+            gap: 50px; 
+        }
+
+        .nav-links a { 
+            position: relative; 
+            padding: 8px 0; 
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+            color: var(--accent-gold);
+        }
+
+        /* Кнопка темы */
+        .theme-toggle {
+            background: rgba(0,0,0,0.05);
+            border: 2px solid rgba(0,0,0,0.1);
+            font-size: 1.1em;
+            cursor: pointer;
+            padding: 10px 12px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            color: var(--text-light);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body.dark .theme-toggle {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            color: var(--text-dark);
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: white;
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        /* Кнопка языка */
+        .language-toggle {
+            background: rgba(0,0,0,0.05);
+            border: 2px solid rgba(0,0,0,0.1);
+            font-size: 0.9em;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            color: var(--text-light);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        body.dark .language-toggle {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            color: var(--text-dark);
+        }
+
+        .language-toggle:hover {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn { 
+            display: none; 
+            background: none; 
+            border: none; 
+            font-size: 1.5em; 
+            cursor: pointer; 
+            color: var(--accent);
+            padding: 10px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(0,0,0,0.05);
+            transform: scale(1.1);
+        }
+
+        body.dark .mobile-menu-btn {
+            color: var(--text-dark);
+        }
+
+        body.dark .mobile-menu-btn:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Шапка */
+        header {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            text-align: center; 
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: #fff; 
+            margin-top: -80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 8s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        header h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 4em; 
+            margin-bottom: 15px; 
+            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+        }
+
+        header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-gold);
+        }
+
+        header p { 
+            font-size: 1.6em; 
+            margin-bottom: 30px; 
+            max-width: 700px; 
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .btn {
+            padding: 15px 35px; 
+            background: var(--accent-gold); 
+            color: #fff;
+            border-radius: var(--radius); 
+            font-weight: bold;
+            border: none; 
+            cursor: pointer; 
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1em;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover { 
+            transform: translateY(-5px) scale(1.05); 
+            background: #c19b2c;
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Секции */
+        section { 
+            padding: 100px 20px; 
+            max-width: 1200px; 
+            margin: auto; 
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section h2 { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            font-family: 'Playfair Display',serif; 
+            font-size: 2.8em;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gold);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+
+        section.visible h2::after {
+            transform: scaleX(1);
+        }
+
+        .lead { 
+            text-align: center; 
+            color: var(--muted); 
+            max-width: 800px; 
+            margin: 0 auto 50px; 
+            font-size: 1.2em; 
+            line-height: 1.8;
+        }
+
+        /* Обо мне */
+        .about { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 60px; 
+            align-items: center; 
+        }
+
+        .about img { 
+            flex: 1; 
+            min-width: 350px; 
+            max-width: 450px; 
+            border-radius: var(--radius); 
+            transition: var(--transition); 
+            box-shadow: var(--shadow);
+            filter: grayscale(0.2);
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .about img:hover { 
+            transform: translateY(-10px) scale(1.02); 
+            box-shadow: var(--shadow-hover);
+            filter: grayscale(0);
+        }
+
+        .about div { 
+            flex: 2; 
+            min-width: 350px;
+        }
+
+        .about p { 
+            margin-bottom: 25px;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        /* Портфолио */
+        .portfolio-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); 
+            gap: 35px;
+        }
+
+        .portfolio-item { 
+            position: relative; 
+            border-radius: var(--radius); 
+            overflow: hidden; 
+            box-shadow: var(--shadow); 
+            transition: var(--transition); 
+            cursor: pointer; 
+            transform: translateY(0);
+        }
+
+        .portfolio-item:hover { 
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .portfolio-item img { 
+            width: 100%; 
+            height: 280px; 
+            object-fit: cover; 
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover img { 
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: linear-gradient(transparent, rgba(0,0,0,0.9)); 
+            color: white; 
+            padding: 25px; 
+            transform: translateY(100%); 
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay { 
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h3 {
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .portfolio-overlay p {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        /* Контакты */
+        .contact-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 50px; 
+            margin-top: 50px; 
+        }
+
+        .contact-form { 
+            flex: 1; 
+            min-width: 350px; 
+        }
+
+        .form-group { 
+            margin-bottom: 25px; 
+            position: relative;
+        }
+
+        .form-group label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: bold; 
+            color: var(--accent);
+        }
+
+        body.dark .form-group label {
+            color: var(--text-dark);
+        }
+
+        .form-control { 
+            width: 100%; 
+            padding: 15px 20px; 
+            border: 2px solid #e0e0e0; 
+            border-radius: var(--radius); 
+            font-family: inherit; 
+            font-size: 1em; 
+            transition: var(--transition); 
+            background: var(--card);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        body.dark .form-control { 
+            background: #2c2c2c; 
+            color: #fff; 
+            border: 2px solid #444;
+        }
+
+        body.dark .form-control:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .contact-info { 
+            flex: 1; 
+            min-width: 350px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+        }
+
+        .contact-btn { 
+            padding: 20px; 
+            border-radius: var(--radius); 
+            font-weight: bold; 
+            display: flex; 
+            justify-content: flex-start; 
+            align-items: center; 
+            gap: 15px; 
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .contact-btn:hover::before {
+            left: 100%;
+        }
+
+        body.dark .contact-btn { 
+            background: #2c2c2c; 
+            color: var(--text-dark);
+            border: 2px solid #444;
+        }
+
+        body.light .contact-btn { 
+            background: var(--card); 
+            color: var(--text-light);
+            border: 2px solid #e0e0e0;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-gold);
+        }
+
+        .contact-btn i {
+            font-size: 1.3em;
+            transition: var(--transition);
+        }
+
+        .contact-btn:hover i {
+            transform: scale(1.2) rotate(5deg);
+            color: var(--accent-gold);
+        }
+
+        /* Футер */
+        footer { 
+            text-align: center; 
+            padding: 40px 20px; 
+            background: var(--accent); 
+            color: #fff; 
+            margin-top: 60px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gold);
+        }
+
+        /* Улучшенный лайтбокс */
+        .project-lightbox { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0,0,0,0.95); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 2000; 
+            opacity: 0; 
+            visibility: hidden; 
+            transition: opacity 0.4s; 
+            flex-direction: column;
+            touch-action: pan-y pinch-zoom;
+        }
+
+        .project-lightbox.active { 
+            opacity: 1; 
+            visibility: visible;
+        }
+
+        .project-lightbox-close { 
+            position: absolute; 
+            top: 30px; 
+            right: 30px; 
+            font-size: 2.5em; 
+            background: rgba(255,255,255,0.1);
+            border: none; 
+            color: #fff; 
+            cursor: pointer; 
+            z-index: 2100;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .project-lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .project-lightbox-content { 
+            max-width: 90%; 
+            max-height: 80%; 
+            display: flex; 
+            align-items: center; 
+            gap: 30px;
+            position: relative;
+            width: 100%;
+        }
+
+        .project-lightbox-image-container {
+            flex: 1;
+            max-width: 800px;
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .project-lightbox-image {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        /* Кнопки навигации для десктопа */
+        .project-lightbox-nav { 
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .project-lightbox-prev, .project-lightbox-next { 
+            background: rgba(255,255,255,0.2); 
+            color: #fff; 
+            border: none; 
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%; 
+            font-size: 1.5em; 
+            cursor: pointer; 
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: all;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-lightbox-prev:hover, .project-lightbox-next:hover { 
+            background: rgba(255,255,255,0.3); 
+            transform: scale(1.1);
+        }
+
+        /* Кнопки навигации для мобильных */
+        .mobile-nav-buttons {
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .mobile-nav-btn {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .image-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        /* Индикаторы для мобильных */
+        .image-indicators {
+            display: none;
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .image-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transition: var(--transition);
+        }
+
+        .image-indicator.active {
+            background: var(--accent-gold);
+            transform: scale(1.2);
+        }
+
+        /* Прелоадер */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(0,0,0,0.1);
+            border-top: 4px solid var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Уведомление */
+        .notification {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            padding: 20px 25px;
+            background: #4CAF50;
+            color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            z-index: 3000;
+            transform: translateX(150%);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background: #f44336;
+        }
+
+        /* Адаптивность */
+        @media(max-width: 968px){
+            .nav-links{
+                display:none;
+                position:absolute;
+                top:100%;
+                left:0;
+                width:100%;
+                background: white;
+                flex-direction:column;
+                padding:30px;
+                box-shadow:0 10px 30px rgba(0,0,0,0.15);
+                gap: 25px;
+            }
+            
+            body.dark .nav-links {
+                background: #1f1f1f;
+            }
+            
+            .nav-links.active{
+                display:flex;
+            }
+            
+            .mobile-menu-btn{
+                display:block;
+            }
+            
+            .nav-controls {
+                gap: 10px;
+            }
+            
+            .language-toggle span {
+                display: none;
+            }
+            
+            .language-toggle {
+                width: 45px;
+                height: 45px;
+                justify-content: center;
+                padding: 10px;
+            }
+            
+            .about, .contact-container{
+                flex-direction:column;
+            }
+            
+            .about img{
+                max-width:100%;
+                min-width: 100%;
+            } 
+            
+            header h1{
+                font-size:3em;
+            } 
+            
+            header p{
+                font-size:1.3em;
+            } 
+            
+            section{
+                padding:80px 20px;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+            }
+            
+            .project-lightbox-content {
+                flex-direction: column;
+                gap: 20px;
+                max-height: 90%;
+                padding: 20px;
+            }
+            
+            .project-lightbox-image-container {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            .project-lightbox-image {
+                max-height: 60vh;
+                width: 100%;
+                object-fit: contain;
+            }
+            
+            /* Скрываем боковые кнопки на мобильных */
+            .project-lightbox-nav {
+                display: none;
+            }
+            
+            /* Показываем нижние кнопки на мобильных */
+            .mobile-nav-buttons {
+                display: flex;
+            }
+            
+            /* Показываем индикаторы на мобильных */
+            .image-indicators {
+                display: flex;
+            }
+            
+            .image-counter {
+                bottom: 120px;
+            }
+        }
+
+        @media(max-width: 480px){
+            header h1{
+                font-size:2.2em;
+            } 
+            
+            header p{
+                font-size:1.1em;
+            } 
+            
+            section h2{
+                font-size:2.2em;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .portfolio-item img {
+                height: 250px;
+            }
+            
+            .contact-btn {
+                padding: 15px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            
+            .nav-controls {
+                gap: 5px;
+            }
+            
+            .theme-toggle, .language-toggle {
+                width: 40px;
+                height: 40px;
+                padding: 8px;
+            }
+            
+            .project-lightbox-image {
+                max-height: 50vh;
+            }
+            
+            .mobile-nav-buttons {
+                bottom: 15px;
+            }
+            
+            .image-indicators {
+                bottom: 70px;
+            }
+            
+            .image-counter {
+                bottom: 100px;
+                font-size: 0.8em;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 768px) and (orientation: landscape) {
+            .project-lightbox-image {
+                max-height: 80vh;
+            }
+            
+            .mobile-nav-buttons {
+                bottom: 10px;
+            }
+            
+            .image-indicators {
+                bottom: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Прелоадер -->
+<div class="preloader" id="preloader">
+    <div class="loader"></div>
+</div>
+
+<!-- Уведомление -->
+<div class="notification" id="notification"></div>
+
+<nav id="navbar">
+    <div class="nav-container">
+        <a href="#top" class="logo">Гольцман Кристина</a>
+        <div class="nav-controls">
+            <div class="nav-links">
+                <a href="#about" data-i18n="nav.about">Обо мне</a>
+                <a href="#portfolio" data-i18n="nav.portfolio">Портфолио</a>
+                <a href="#contact" data-i18n="nav.contact">Контакты</a>
+            </div>
+            <button class="language-toggle" id="languageToggle">
+                <i class="fas fa-globe"></i>
+                <span data-i18n="language">RU</span>
+            </button>
+            <button class="theme-toggle" id="themeToggle" title="Сменить тему">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </div>
+</nav>
+
+<header id="top">
+    <h1 data-i18n="header.title">Гольцман Кристина</h1>
+    <p data-i18n="header.subtitle">Дизайнер интерьера</p>
+    <a class="btn floating" href="#portfolio" data-i18n="header.button">Посмотреть портфолио</a>
+</header>
+
+<main>
+    <section id="about">
+        <h2 data-i18n="about.title">Обо мне</h2>
+        <p class="lead" data-i18n="about.description">Я — Кристина Гольцман, дизайнер интерьера с художественным образованием. Создаю гармоничные пространства, которые отражают характер и потребности клиентов.</p>
+        <div class="about">
+            <img src="https://i.ibb.co/mj1xSw7/IMG-2128.jpg" alt="Гольцман Кристина">
+            <div>
+                <p data-i18n="about.text1">Мой подход к дизайну основан на глубоком понимании эргономики, световых решений и работы с пространством. Я считаю, что интерьер должен быть не только красивым, но и функциональным, удобным для жизни.</p>
+                <p data-i18n="about.text2">Работаю с частными и коммерческими проектами: квартиры, загородные дома, офисы, рестораны. Каждый проект — это уникальная история, которую я создаю вместе с клиентом.</p>
+                <p data-i18n="about.text3">Использую современные технологии визуализации, что позволяет наглядно увидеть будущий интерьер до начала ремонта. Строго слежу за соблюдением сроков и бюджета проекта.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2 data-i18n="portfolio.title">Портфолио</h2>
+        <p class="lead" data-i18n="portfolio.description">Мои реализованные проекты. Нажмите на любой проект для просмотра фотографий.</p>
+        <div class="portfolio-grid" id="portfolioGrid"></div>
+    </section>
+
+    <section id="contact">
+        <h2 data-i18n="contact.title">Контакты</h2>
+        <p class="lead" data-i18n="contact.description">Свяжитесь со мной для обсуждения вашего проекта</p>
+        <div class="contact-container">
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name" data-i18n="contact.form.name">Ваше имя</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telegram" data-i18n="contact.form.telegram">Ваш Telegram</label>
+                        <input type="text" id="telegram" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" data-i18n="contact.form.phone">Ваш телефон</label>
+                        <input type="text" id="phone" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn" style="width:100%;" data-i18n="contact.form.button">Отправить данные</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <a class="contact-btn" href="mailto:golcman.9@icloud.com">
+                    <i class="fas fa-envelope"></i>
+                    <span data-i18n="contact.email">Email</span>
+                </a>
+                <a class="contact-btn" href="tel:+79162779048">
+                    <i class="fas fa-phone"></i>
+                    <span data-i18n="contact.phone">Телефон</span>
+                </a>
+                <a class="contact-btn" href="https://t.me/kristi_golt" target="_blank" rel="noopener">
+                    <i class="fab fa-telegram"></i>
+                    <span data-i18n="contact.telegram">Telegram</span>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p data-i18n="footer.copyright">© 2025 Гольцман Кристина — Дизайнер интерьера</p>
+</footer>
+
+<!-- Улучшенный лайтбокс -->
+<div class="project-lightbox" id="projectLightbox">
+    <button class="project-lightbox-close" id="projectClose">×</button>
+    <div class="project-lightbox-content">
+        <div class="project-lightbox-nav">
+            <button class="project-lightbox-prev" id="projectPrev"><i class="fas fa-chevron-left"></i></button>
+            <button class="project-lightbox-next" id="projectNext"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="project-lightbox-image-container">
+            <img src="" alt="" class="project-lightbox-image" id="projectImage">
+            <div class="image-indicators" id="imageIndicators"></div>
+            <div class="image-counter" id="imageCounter"></div>
+        </div>
+        <div class="mobile-nav-buttons">
+            <button class="mobile-nav-btn" id="mobilePrev"><i class="fas fa-chevron-left"></i></button>
+            <button class="mobile-nav-btn" id="mobileNext"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- Переводы ---
+    const translations = {
+        ru: {
+            "language": "RU",
+            "nav.about": "Обо мне",
+            "nav.portfolio": "Портфолио", 
+            "nav.contact": "Контакты",
+            "header.title": "Гольцман Кристина",
+            "header.subtitle": "Дизайнер интерьера",
+            "header.button": "Посмотреть портфолио",
+            "about.title": "Обо мне",
+            "about.description": "Я — Кристина Гольцман, дизайнер интерьера с художественным образованием. Создаю гармоничные пространства, которые отражают характер и потребности клиентов.",
+            "about.text1": "Мой подход к дизайну основан на глубоком понимании эргономики, световых решений и работы с пространством. Я считаю, что интерьер должен быть не только красивым, но и функциональным, удобным для жизни.",
+            "about.text2": "Работаю с частными и коммерческими проектами: квартиры, загородные дома, офисы, рестораны. Каждый проект — это уникальная история, которую я создаю вместе с клиентом.",
+            "about.text3": "Использую современные технологии визуализации, что позволяет наглядно увидеть будущий интерьер до начала ремонта. Строго слежу за соблюдением сроков и бюджета проекта.",
+            "portfolio.title": "Портфолио",
+            "portfolio.description": "Мои реализованные проекты. Нажмите на любой проект для просмотра фотографий.",
+            "portfolio.view": "Нажмите для просмотра",
+            "contact.title": "Контакты",
+            "contact.description": "Свяжитесь со мной для обсуждения вашего проекта",
+            "contact.form.name": "Ваше имя",
+            "contact.form.telegram": "Ваш Telegram", 
+            "contact.form.phone": "Ваш телефон",
+            "contact.form.button": "Отправить данные",
+            "contact.email": "Email",
+            "contact.phone": "Телефон",
+            "contact.telegram": "Telegram",
+            "footer.copyright": "© 2025 Гольцман Кристина — Дизайнер интерьера",
+            "notification.sent": "Спасибо! Ваши данные отправлены 👍",
+            "notification.error": "Ошибка при отправке. Проверьте настройки бота.",
+            "notification.connection": "Ошибка соединения. Проверьте интернет.",
+            "notification.fields": "Пожалуйста, заполните все поля"
+        },
+        en: {
+            "language": "EN", 
+            "nav.about": "About",
+            "nav.portfolio": "Portfolio",
+            "nav.contact": "Contact",
+            "header.title": "Kristina Goltsman",
+            "header.subtitle": "Interior Designer",
+            "header.button": "View Portfolio",
+            "about.title": "About Me",
+            "about.description": "I am Kristina Goltsman, an interior designer with an art education. I create harmonious spaces that reflect the character and needs of clients.",
+            "about.text1": "My design approach is based on a deep understanding of ergonomics, lighting solutions, and spatial work. I believe that an interior should be not only beautiful but also functional and comfortable for living.",
+            "about.text2": "I work with private and commercial projects: apartments, country houses, offices, restaurants. Each project is a unique story that I create together with the client.",
+            "about.text3": "I use modern visualization technologies that allow you to see the future interior before the start of renovation. I strictly monitor compliance with project deadlines and budget.",
+            "portfolio.title": "Portfolio", 
+            "portfolio.description": "My completed projects. Click on any project to view photos.",
+            "portfolio.view": "Click to view",
+            "contact.title": "Contact",
+            "contact.description": "Contact me to discuss your project",
+            "contact.form.name": "Your Name",
+            "contact.form.telegram": "Your Telegram",
+            "contact.form.phone": "Your Phone", 
+            "contact.form.button": "Send Data",
+            "contact.email": "Email",
+            "contact.phone": "Phone",
+            "contact.telegram": "Telegram",
+            "footer.copyright": "© 2025 Kristina Goltsman — Interior Designer",
+            "notification.sent": "Thank you! Your data has been sent 👍",
+            "notification.error": "Error sending. Check bot settings.",
+            "notification.connection": "Connection error. Check your internet.",
+            "notification.fields": "Please fill in all fields"
+        }
+    };
+
+    // --- Функция перевода ---
+    function setLanguage(lang) {
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+        localStorage.setItem('language', lang);
+    }
+
+    // --- Прелоадер ---
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('hidden');
+            
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.add('visible');
+            });
+        }, 1000);
+    });
+
+    // --- Переключение языка ---
+    const languageToggle = document.getElementById('languageToggle');
+    let currentLanguage = localStorage.getItem('language') || 'ru';
+
+    // Устанавливаем язык при загрузке
+    setLanguage(currentLanguage);
+    languageToggle.querySelector('span').textContent = currentLanguage.toUpperCase();
+
+    languageToggle.addEventListener('click', () => {
+        currentLanguage = currentLanguage === 'ru' ? 'en' : 'ru';
+        setLanguage(currentLanguage);
+        languageToggle.querySelector('span').textContent = currentLanguage.toUpperCase();
+        showNotification(currentLanguage === 'ru' ? 'Язык изменен на русский' : 'Language changed to English');
+    });
+
+    // --- Переключение темы ---
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
+        themeIcon.className = 'fas fa-sun';
+    } else {
+        document.body.classList.add('light');
+        themeIcon.className = 'fas fa-moon';
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (document.body.classList.contains('dark')) {
+            document.body.classList.replace('dark', 'light');
+            localStorage.setItem('theme', 'light');
+            themeIcon.className = 'fas fa-moon';
+            showNotification(currentLanguage === 'ru' ? 'Светлая тема активирована' : 'Light theme activated');
+        } else {
+            document.body.classList.replace('light', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeIcon.className = 'fas fa-sun';
+            showNotification(currentLanguage === 'ru' ? 'Тёмная тема активирована' : 'Dark theme activated');
+        }
+    });
+
+    // --- Мобильное меню ---
+    document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.remove('active');
+        });
+    });
+
+    // --- Прокрутка навигации ---
+    window.addEventListener('scroll', () => { 
+        const navbar = document.getElementById('navbar'); 
+        if(window.scrollY > 50) {
+            navbar.classList.add('scrolled'); 
+        } else {
+            navbar.classList.remove('scrolled'); 
+        }
+        
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (sectionTop < windowHeight * 0.85) {
+                section.classList.add('visible');
+            }
+        });
+    });
+
+    // --- Уведомления ---
+    function showNotification(message, type = 'success') {
+        const notification = document.getElementById('notification');
+        notification.innerHTML = type === 'success' ? 
+            `<i class="fas fa-check-circle"></i> ${message}` : 
+            `<i class="fas fa-exclamation-circle"></i> ${message}`;
+        
+        notification.className = 'notification';
+        if (type === 'error') notification.classList.add('error');
+        
+        notification.classList.add('show');
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    }
+
+    // --- Форма обратной связи ---
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById("name").value;
+        const telegram = document.getElementById("telegram").value;
+        const phone = document.getElementById("phone").value;
+        
+        if (!name || !telegram || !phone) {
+            showNotification(currentLanguage === 'ru' ? 'Пожалуйста, заполните все поля' : 'Please fill in all fields', 'error');
+            return;
+        }
+        
+        // Ваши данные для Telegram бота
+        const token = "8412649452:AAHBJyuUgk3lYJjgm34-mU5aV1kzkpVg9VQ";
+        const chatId = "900787713";
+        
+        const text = `📝 ${currentLanguage === 'ru' ? 'Новая заявка с сайта' : 'New website application'}\n\n👤 ${currentLanguage === 'ru' ? 'Имя' : 'Name'}: ${name}\n💬 Telegram: ${telegram}\n📞 ${currentLanguage === 'ru' ? 'Телефон' : 'Phone'}: ${phone}`;
+        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+        
+        try { 
+            const response = await fetch(url, { 
+                method: "POST", 
+                headers: {"Content-Type": "application/json"}, 
+                body: JSON.stringify({chat_id: chatId, text: text}) 
+            });
+            
+            if(response.ok) { 
+                showNotification(currentLanguage === 'ru' ? 'Спасибо! Ваши данные отправлены 👍' : 'Thank you! Your data has been sent 👍'); 
+                e.target.reset(); 
+            } else {
+                showNotification(currentLanguage === 'ru' ? 'Ошибка при отправке. Проверьте настройки бота.' : 'Error sending. Check bot settings.', 'error');
+            }
+        } catch(error) { 
+            showNotification(currentLanguage === 'ru' ? 'Ошибка соединения. Проверьте интернет.' : 'Connection error. Check your internet.', 'error');
+        }
+    });
+
+    // --- Проекты портфолио ---
+    const projects = [
+        { 
+            title: {ru: "Проект квартиры", en: "Apartment Project"}, 
+            images: [ 
+                "https://i.ibb.co/ymzCw1NR/IMG-2132.jpg",
+                "https://i.ibb.co/PsxVxPrP/IMG-2133.jpg",
+                "https://i.ibb.co/DfX89WLq/IMG-2134.jpg"
+            ] 
+        },
+        { 
+            title: {ru: "Ванная", en: "Bathroom"}, 
+            images: [ 
+                "https://i.ibb.co/wFDY8FXx/IMG-2135.jpg",
+                "https://i.ibb.co/HT7ZMQ9f/IMG-2136.jpg"
+            ] 
+        },
+        { 
+            title: {ru: "Спальня", en: "Bedroom"}, 
+            images: [ 
+                "https://i.ibb.co/bR1J3N4S/IMG-2138.jpg",
+                "https://i.ibb.co/SDnwd1kY/IMG-2137.jpg"
+            ] 
+        },
+        { 
+            title: {ru: "Гостинная", en: "Living Room"}, 
+            images: [ 
+                "https://i.ibb.co/5hTfDHmP/IMG-2139.jpg"
+            ] 
+        }
+    ];
+
+    // Заполнение портфолио
+    const portfolioGrid = document.getElementById('portfolioGrid');
+    projects.forEach((proj, index) => {
+        const div = document.createElement('article');
+        div.className = 'portfolio-item';
+        div.innerHTML = `
+            <img src="${proj.images[0]}" alt="${proj.title.ru}" loading="lazy">
+            <div class="portfolio-overlay">
+                <h3>${currentLanguage === 'ru' ? proj.title.ru : proj.title.en}</h3>
+                <small data-i18n="portfolio.view">Нажмите для просмотра</small>
+            </div>
+        `;
+        div.addEventListener('click', () => openProject(index, 0));
+        portfolioGrid.appendChild(div);
+    });
+
+    // --- Улучшенный лайтбокс ---
+    const projectLightbox = document.getElementById('projectLightbox');
+    const projectImage = document.getElementById('projectImage');
+    const imageCounter = document.getElementById('imageCounter');
+    const imageIndicators = document.getElementById('imageIndicators');
+    const projectClose = document.getElementById('projectClose');
+    const projectPrev = document.getElementById('projectPrev');
+    const projectNext = document.getElementById('projectNext');
+    const mobilePrev = document.getElementById('mobilePrev');
+    const mobileNext = document.getElementById('mobileNext');
+
+    let currentProject = 0, currentImage = 0;
+    let startX = 0;
+    let endX = 0;
+
+    function openProject(projIndex, imgIndex) {
+        currentProject = projIndex; 
+        currentImage = imgIndex; 
+        updateLightbox();
+        projectLightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+        const proj = projects[currentProject];
+        projectImage.src = proj.images[currentImage];
+        imageCounter.textContent = `${currentImage + 1} / ${proj.images.length}`;
+        
+        // Обновляем индикаторы
+        imageIndicators.innerHTML = '';
+        proj.images.forEach((_, index) => {
+            const indicator = document.createElement('div');
+            indicator.className = `image-indicator ${index === currentImage ? 'active' : ''}`;
+            indicator.addEventListener('click', () => {
+                currentImage = index;
+                updateLightbox();
+            });
+            imageIndicators.appendChild(indicator);
+        });
+    }
+
+    // Закрытие лайтбокса
+    projectClose.addEventListener('click', closeLightbox);
+
+    function closeLightbox() {
+        projectLightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Навигация по изображениям
+    function prevImage() {
+        const imgs = projects[currentProject].images;
+        currentImage = (currentImage - 1 + imgs.length) % imgs.length; 
+        updateLightbox();
+    }
+
+    function nextImage() {
+        const imgs = projects[currentProject].images;
+        currentImage = (currentImage + 1) % imgs.length; 
+        updateLightbox();
+    }
+
+    projectPrev.addEventListener('click', prevImage);
+    projectNext.addEventListener('click', nextImage);
+    mobilePrev.addEventListener('click', prevImage);
+    mobileNext.addEventListener('click', nextImage);
+
+    // Свайпы для мобильных устройств
+    projectLightbox.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    projectLightbox.addEventListener('touchmove', (e) => {
+        endX = e.touches[0].clientX;
+    });
+
+    projectLightbox.addEventListener('touchend', () => {
+        const diffX = startX - endX;
+        const minSwipeDistance = 50; // Минимальное расстояние свайпа
+        
+        if (Math.abs(diffX) > minSwipeDistance) {
+            if (diffX > 0) {
+                // Свайп влево - следующее изображение
+                nextImage();
+            } else {
+                // Свайп вправо - предыдущее изображение
+                prevImage();
+            }
+        }
+    });
+
+    // Клик вне изображения
+    projectLightbox.addEventListener('click', (e) => { 
+        if(e.target === projectLightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Управление с клавиатуры
+    document.addEventListener('keydown', (e) => {
+        if (projectLightbox.classList.contains('active')) {
+            e.preventDefault();
+            
+            switch(e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowLeft':
+                    prevImage();
+                    break;
+                case 'ArrowRight':
+                    nextImage();
+                    break;
+            }
+        }
+    });
+
+    // Плавная прокрутка
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Обновление портфолио при смене языка
+    function updatePortfolioLanguage() {
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        portfolioItems.forEach((item, index) => {
+            const proj = projects[index];
+            const overlay = item.querySelector('.portfolio-overlay');
+            overlay.querySelector('h3').textContent = currentLanguage === 'ru' ? proj.title.ru : proj.title.en;
+        });
+    }
+
+    // Обновляем язык портфолио при смене языка
+    languageToggle.addEventListener('click', updatePortfolioLanguage);
+</script>
+</body>
+</html>
